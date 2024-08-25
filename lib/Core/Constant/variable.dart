@@ -1,0 +1,9 @@
+const String kHomeRoute = "/homeView";
+const String kAllNewsBox = "AllNewsBox";
+const String kPloticsNewsBox = "kPloticsNewsBox";
+const String kSportsNewsBox = "SportsNewsBox";
+const String kBusinessNewsBox = "BusinessNewsBox";
+const String kEnternainmentNewsBox = "EnternainmentNewsBox";
+const String kScienceNewsBox = "ScienceNewsBox";
+const String kTechnologyNewsBox = "TechnologyNewsBox";
+const String kHealthNewsBox = "HealthNewsBox";
