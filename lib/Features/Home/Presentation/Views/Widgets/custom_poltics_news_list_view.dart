@@ -99,7 +99,7 @@ class _CustomPolticsNewsListViewState extends State<CustomPolticsNewsListView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, dd) {
         if (didPop) {
           return;
         } else {

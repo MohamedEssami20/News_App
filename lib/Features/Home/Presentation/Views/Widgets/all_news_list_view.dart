@@ -4,7 +4,8 @@ import 'package:news_app/Features/Home/Presentation/Views/Widgets/all_news_list_
 
 class AllNewsListView extends StatelessWidget {
   const AllNewsListView({
-    super.key, required this.currrentIndex,
+    super.key,
+    required this.currrentIndex,
   });
   final int currrentIndex;
   @override
@@ -14,16 +15,20 @@ class AllNewsListView extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-              child: Text(
-            "Today’s news",
-            style: AppStyle.semiBold20(context),
-          )),
+            child: Text(
+              "Today’s news",
+              style: AppStyle.semiBold20(context),
+            ),
+          ),
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 30,
             ),
           ),
-           SliverFillRemaining(child: AllNewsListViewBlocBuilder(currentIndex: currrentIndex,)),
+          SliverFillRemaining(
+              child: AllNewsListViewBlocBuilder(
+            currentIndex: currrentIndex,
+          ),),
         ],
       ),
     );

@@ -13,7 +13,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-  int currentState = 0;
+  int currentIndex = 0;
   @override
   void initState() {
     tabController = TabController(
@@ -23,7 +23,7 @@ class _HomeViewState extends State<HomeView>
 
     tabController.addListener(() {
       setState(() {
-        currentState = tabController.index;
+        currentIndex = tabController.index;
       });
     });
     super.initState();
@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView>
           bottom: customTabBar(context, tabController),
         ),
         body: HomeViewBody(
-          index: currentState,
+          index: currentIndex,
         ));
   }
 }
