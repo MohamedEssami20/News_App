@@ -63,7 +63,7 @@ class _CustomNewsListViewState extends State<CustomNewsListView> {
     }
   }
 
-    Future<void> _refreshPage() async {
+  Future<void> _refreshPage() async {
     if (!mounted) return;
     await Future.delayed(const Duration(seconds: 2));
     // ignore: use_build_context_synchronously
@@ -74,7 +74,8 @@ class _CustomNewsListViewState extends State<CustomNewsListView> {
       await _fetchAllceNews();
     } else {
       if (mounted) {
-        showErrorSnackbar(context, "Internet Connection Failed", Icons.wifi_off);
+        showErrorSnackbar(
+            context, "Internet Connection Failed", Icons.wifi_off);
       }
     }
   }
@@ -99,7 +100,7 @@ class _CustomNewsListViewState extends State<CustomNewsListView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, dynamic) {
         if (didPop) {
           return;
         } else {
@@ -111,7 +112,7 @@ class _CustomNewsListViewState extends State<CustomNewsListView> {
       },
       child: RefreshIndicator(
         onRefresh: _refreshPage,
-        color:const Color(0xff6F0069),
+        color: const Color(0xff6F0069),
         backgroundColor: Colors.white,
         displacement: 70,
         strokeWidth: 3,

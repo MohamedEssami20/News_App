@@ -21,7 +21,7 @@ class CustomNewsItemAnimation extends StatelessWidget {
             ),
             Expanded(
               flex: 2,
-              child: CustomNewsItemBodyAnimatino(),
+              child: CustomNewsItemBodyAnimation(),
             ),
           ],
         ),

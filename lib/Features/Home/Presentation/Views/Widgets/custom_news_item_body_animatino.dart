@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomNewsItemBodyAnimatino extends StatelessWidget {
-  const CustomNewsItemBodyAnimatino({super.key});
+class CustomNewsItemBodyAnimation extends StatelessWidget {
+  const CustomNewsItemBodyAnimation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomNewsItemBodyAnimatino extends StatelessWidget {
                 Container(
                   height: 20,
                   width: 50,
-                  color: Colors.grey.shade50.withOpacity(0.6),
+                  color: Colors.grey.shade50.withAlpha((0.6 * 255).round()),
                 ),
                 const SizedBox(
                   width: 20,
@@ -35,7 +35,7 @@ class CustomNewsItemBodyAnimatino extends StatelessWidget {
                 Container(
                   height: 20,
                   width: 50,
-                  color: Colors.grey.shade50.withOpacity(0.6),
+                  color: Colors.grey.shade50.withAlpha((0.6 * 255).round()),
                 ),
               ],
             ),

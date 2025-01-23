@@ -103,7 +103,7 @@ class _CustomSportsNewsListViewState extends State<CustomSportsNewsListView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, dynamic) {
         if (didPop) {
           return;
         } else {
