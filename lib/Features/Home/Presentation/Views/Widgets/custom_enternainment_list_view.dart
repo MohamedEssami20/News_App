@@ -26,7 +26,6 @@ class _CustomEnternainmentListViewState
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
-  bool isinitLoading = false;
   bool? isInternetConnected;
   @override
   void initState() {
@@ -35,11 +34,11 @@ class _CustomEnternainmentListViewState
     scrollController.addListener(myListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.addListener(() {
-        checkInternet(
+        checkInternetatLastOfNewsList(
             currentIndex: scrollController.position.pixels,
             maxScroll: scrollController.position.maxScrollExtent,
             context: context,
-            isinitLoading: isinitLoading);
+           );
       });
       isInternetConnected = context.read<InternetConncetionCubit>().state
           is InternetConncetionSuccess;
@@ -104,7 +103,7 @@ class _CustomEnternainmentListViewState
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop,dynamic) {
+      onPopInvokedWithResult: (didPop, dynamic) {
         if (didPop) {
           return;
         } else {

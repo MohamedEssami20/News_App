@@ -4,7 +4,7 @@ import 'package:news_app/Core/Manager/Internet_connectio_Cubit/internet_connceti
 import 'package:news_app/Core/Utils/Widgets/custom_error_widget.dart';
 import 'package:news_app/Core/Utils/Widgets/error_snack_bar.dart';
 import 'package:news_app/Features/Home/Presentation/Manager/All_News_Cubit/all_news_cubit.dart';
-import 'package:news_app/Features/Home/Presentation/Views/Widgets/custom_news_item_list_view.dart';
+import 'package:news_app/Features/Home/Presentation/Views/Widgets/custom_all_news_item_list_view.dart';
 import 'package:news_app/Features/Home/Presentation/Views/Widgets/news_list_view_indicator.dart';
 
 class AllNewsListViewBlocBuilder extends StatelessWidget {

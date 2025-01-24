@@ -23,7 +23,6 @@ class _CustomAllNewsListViewState extends State<CustomAllNewsListView> {
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
-  bool isinitLoading = false;
   bool? isInternetConnected;
   @override
   void initState() {
@@ -32,9 +31,8 @@ class _CustomAllNewsListViewState extends State<CustomAllNewsListView> {
     scrollController.addListener(myListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.addListener(() {
-        checkInternet(
+        checkInternetatLastOfNewsList(
           context: context,
-          isinitLoading: isinitLoading,
           currentIndex: scrollController.position.pixels,
           maxScroll: scrollController.position.maxScrollExtent,
         );

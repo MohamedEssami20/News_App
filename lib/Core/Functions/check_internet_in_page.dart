@@ -4,22 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/Core/Manager/Internet_connectio_Cubit/internet_conncetion_cubit.dart';
 import 'package:news_app/Core/Utils/Widgets/error_snack_bar.dart';
 
-checkInternet(
+checkInternetatLastOfNewsList(
     {required double currentIndex,
     required double maxScroll,
-    required BuildContext context,
-    required bool isinitLoading}) {
+    required BuildContext context,}) {
+  bool isLoading = false;
   final internetConnection = context.read<InternetConncetionCubit>().state;
   if (maxScroll == currentIndex) {
-    if (!isinitLoading) {
-      isinitLoading = true;
-      if (isinitLoading == true &&
+    if (!isLoading) {
+      isLoading = true;
+      if (isLoading == true &&
           internetConnection is InternetConncetionFailure) {
-        log("Is loading in 2= $isinitLoading");
+        log("Is loading in 2= $isLoading");
         showErrorSnackbar(
             context, "Enternet connection error, try later", Icons.wifi_off);
-        isinitLoading = false;
-        log("Is loading in 3= $isinitLoading");
+        isLoading = false;
+        log("Is loading in 3= $isLoading");
       }
     }
   }

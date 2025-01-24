@@ -23,7 +23,6 @@ class _CustomPolticsNewsListViewState extends State<CustomPolticsNewsListView> {
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
-  bool isinitLoading = false;
   bool? isInternetConnected;
   @override
   void initState() {
@@ -31,11 +30,10 @@ class _CustomPolticsNewsListViewState extends State<CustomPolticsNewsListView> {
     scrollController.addListener(myListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.addListener(() {
-        checkInternet(
+        checkInternetatLastOfNewsList(
           currentIndex: scrollController.position.pixels,
           maxScroll: scrollController.position.maxScrollExtent,
           context: context,
-          isinitLoading: isinitLoading,
         );
       });
       isInternetConnected = context.read<InternetConncetionCubit>().state

@@ -25,19 +25,18 @@ class _CustomScienceNewsListViewState extends State<CustomScienceNewsListView> {
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
-  bool isinitLoading = false;
-   bool? isInternetConnected;
+  bool? isInternetConnected;
   @override
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(myListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.addListener(() {
-        checkInternet(
+        checkInternetatLastOfNewsList(
             currentIndex: scrollController.position.pixels,
             maxScroll: scrollController.position.maxScrollExtent,
             context: context,
-            isinitLoading: isinitLoading);
+          );
       });
       isInternetConnected = context.read<InternetConncetionCubit>().state
           is InternetConncetionSuccess;
@@ -66,7 +65,6 @@ class _CustomScienceNewsListViewState extends State<CustomScienceNewsListView> {
     }
   }
 
-  
   Future<void> _refreshPage() async {
     if (!mounted) return;
     await Future.delayed(const Duration(seconds: 2));
@@ -78,7 +76,8 @@ class _CustomScienceNewsListViewState extends State<CustomScienceNewsListView> {
       await _fetchScienceNews();
     } else {
       if (mounted) {
-        showErrorSnackbar(context, "Internet Connection Failed", Icons.wifi_off);
+        showErrorSnackbar(
+            context, "Internet Connection Failed", Icons.wifi_off);
       }
     }
   }
@@ -103,7 +102,7 @@ class _CustomScienceNewsListViewState extends State<CustomScienceNewsListView> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop,dynamic) {
+      onPopInvokedWithResult: (didPop, dynamic) {
         if (didPop) {
           return;
         } else {
