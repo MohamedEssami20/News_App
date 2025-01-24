@@ -18,11 +18,12 @@ class AllNewsCubit extends Cubit<AllNewsState> {
 
   Future<void> getAllNews(
       {int pageNumber = 1, required BuildContext context}) async {
+
     if (pageNumber == 1) {
       emit(AllNewsLoading());
     } else {
       emit(AllNewsPaginationLoading());
-    }
+    }// emit loading news in first page or loading more news in pagination;
 
     Either<Failure, List<NewsEntity>> allNews =
         await newsRepos.fetchAllNews(pageNumber: pageNumber, context: context);
@@ -32,7 +33,7 @@ class AllNewsCubit extends Cubit<AllNewsState> {
         emit(AllNewsFailure(errorMessage: failure.errorMessage));
       } else {
         emit(AllNewsPaginationFailure(errorMessage: failure.errorMessage));
-      }
+      } //emit news failure in first page or news pagination;
     }, (newNews) {
       log("**** All News In Cubit=  ${newNews.length}");
 
@@ -46,7 +47,7 @@ class AllNewsCubit extends Cubit<AllNewsState> {
           currentNews.clear(); // Clear old data only if there is new data
           currentNews.addAll(newNews);
           log("**** Updated Current News In Cubit=  ${currentNews.length}");
-          emit(AllNewsSuccess(allNews: currentNews)); // fetch new news data;
+          emit(AllNewsSuccess(allNews: currentNews)); // fetch new news data in refresh;
         } else {
           //is false;
           // is first open app;
@@ -55,7 +56,7 @@ class AllNewsCubit extends Cubit<AllNewsState> {
           currentNews.addAll(newNews);
           emit(AllNewsSuccess(allNews: currentNews)); // fetch same old data;
         }
-      } else {
+      } else { // page number >1
         // For pagination, just append new data
         currentNews
             .addAll(newNews); // add news data to currentNews from pagination;

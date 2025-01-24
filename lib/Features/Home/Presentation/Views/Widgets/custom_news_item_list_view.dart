@@ -10,16 +10,16 @@ import 'package:news_app/Features/Home/Domain/news_entity.dart';
 import 'package:news_app/Features/Home/Presentation/Manager/All_News_Cubit/all_news_cubit.dart';
 import 'package:news_app/Features/Home/Presentation/Views/Widgets/custom_news_item.dart';
 
-class CustomNewsListView extends StatefulWidget {
-  const CustomNewsListView(
+class CustomAllNewsListView extends StatefulWidget {
+  const CustomAllNewsListView(
       {super.key, required this.newsData, required this.currentIndex});
   final List<NewsEntity> newsData;
   final int currentIndex;
   @override
-  State<CustomNewsListView> createState() => _CustomNewsListViewState();
+  State<CustomAllNewsListView> createState() => _CustomAllNewsListViewState();
 }
 
-class _CustomNewsListViewState extends State<CustomNewsListView> {
+class _CustomAllNewsListViewState extends State<CustomAllNewsListView> {
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
