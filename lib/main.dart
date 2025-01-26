@@ -22,7 +22,6 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   setup();
   runApp(const NewsApp());
-
   FlutterNativeSplash.remove();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

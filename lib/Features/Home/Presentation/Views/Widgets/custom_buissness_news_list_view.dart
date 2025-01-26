@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:news_app/Core/Functions/animate_to_top_list.dart';
 import 'package:news_app/Core/Functions/check_internet_in_page.dart';
 import 'package:news_app/Core/Functions/launch_url.dart';
 import 'package:news_app/Core/Manager/Internet_connectio_Cubit/internet_conncetion_cubit.dart';
-import 'package:news_app/Core/Utils/Widgets/error_snack_bar.dart';
 import 'package:news_app/Features/Home/Domain/news_entity.dart';
 import 'package:news_app/Features/Home/Presentation/Manager/Bussiness_News_Cubit/bussiness_news_cubit.dart';
 import 'package:news_app/Features/Home/Presentation/Views/Widgets/custom_news_item.dart';
@@ -26,7 +24,6 @@ class _CustomBuissnessNewsListViewState
   late ScrollController scrollController;
   int nextPage = 1;
   bool isLoading = false;
-  bool? isInternetConnected;
   @override
   void initState() {
     scrollController = ScrollController();
@@ -34,13 +31,11 @@ class _CustomBuissnessNewsListViewState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.addListener(() {
         checkInternetatLastOfNewsList(
-            currentIndex: scrollController.position.pixels,
-            maxScroll: scrollController.position.maxScrollExtent,
-            context: context,
-          );
+          currentIndex: scrollController.position.pixels,
+          maxScroll: scrollController.position.maxScrollExtent,
+          context: context,
+        );
       });
-      isInternetConnected = context.read<InternetConncetionCubit>().state
-          is InternetConncetionSuccess;
     });
     super.initState();
   }
@@ -52,14 +47,11 @@ class _CustomBuissnessNewsListViewState
     if (currentIndex > 0.70 * maxScroll) {
       if (isLoading == false) {
         isLoading = true;
-        log("Is loading in 1= $isLoading");
         if (isLoading == true &&
             internetConnection is InternetConncetionSuccess) {
           await BlocProvider.of<BussinessNewsCubit>(context)
               .getBussinessNews(pageNumber: ++nextPage, context: context);
-          log("next pageNumber in listener= $nextPage");
           isLoading = false;
-          log("Is loading in 4= $isLoading");
         }
         isLoading = false;
       }
@@ -68,29 +60,8 @@ class _CustomBuissnessNewsListViewState
 
   Future<void> _refreshPage() async {
     if (!mounted) return;
-    await Future.delayed(const Duration(seconds: 2));
-    // ignore: use_build_context_synchronously
-    final internetConnection = context.read<InternetConncetionCubit>().state;
-    final isInternetConnected = internetConnection is InternetConncetionSuccess;
-
-    if (isInternetConnected) {
-      await _fetchBusinessNews();
-    } else {
-      if (mounted) {
-        showErrorSnackbar(
-            context, "Internet Connection Failed", Icons.wifi_off);
-      }
-    }
-  }
-
-  Future<void> _fetchBusinessNews() async {
-    await BlocProvider.of<BussinessNewsCubit>(context)
-        .getBussinessNews(pageNumber: 1, context: context);
-    if (mounted) {
-      setState(() {
-        nextPage = 1;
-      });
-    }
+    final bussinessNews = context.read<BussinessNewsCubit>();
+    await bussinessNews.refreshBussinessPage(context, mounted);
   }
 
   @override
