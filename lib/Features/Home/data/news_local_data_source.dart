@@ -72,14 +72,10 @@ class NewsLocalDataSourceImpl extends NewsLocalDataSource {
 
   @override
   List<NewsEntity> fetchPolticsNews({int pageNumber = 0}) {
-    log("pageNumber length in Poltics local=$pageNumber");
     int startIndex = pageNumber * 30;
-    log("Start Index in Poltics local=$startIndex");
     int endIndex = (pageNumber + 1) * 30;
-    log("End Index in Poltics local=$endIndex");
     Box<NewsEntity> box = Hive.box<NewsEntity>(kPloticsNewsBox);
     int length = box.values.length;
-    log("length of newsData in Poltics local=$length");
     if (startIndex >= length || endIndex > length) {
       return [];
     }
