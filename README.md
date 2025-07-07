@@ -1,18 +1,44 @@
-# news_app
+📰 News App – Flutter Clean Architecture
+A production-level Flutter news application that displays the latest headlines from top news sources. The app handles online and offline use cases seamlessly by monitoring the device's internet connection and caching previously viewed articles when the user goes offline.
 
-A new Flutter project.
-this is a news app,
-you can check my code here.
+Built using clean architecture principles and layered structure for maintainability, scalability, and performance.
 
-## Getting Started
+🛠 Tech Stack
+Flutter
 
-This project is a starting point for a Flutter application.
+Dio (API calls)
 
-A few resources to get you started if this is your first Flutter project:
+Cubit (Bloc) for state management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Connectivity Plus (detect network state)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hive or SharedPreferences for local storage
+
+GetIt (Dependency Injection)
+
+CachedNetworkImage
+
+Flutter Launcher Icons
+
+📌 Project Status
+✅ Released & tested on multiple devices
+✅ Works seamlessly online/offline
+🚧 Planned enhancements (bookmarking, push notifications)
+
+📱 Responsiveness
+Designed with responsive principles to work smoothly on:
+
+📱 Phones
+
+📲 Tablets
+
+🖥 Emulators/Desktop (Flutter 3+)
+
+💡 Future Improvements
+News bookmarking system
+
+Category filtering
+
+Push notifications with Firebase
+
+App settings (language, region, theme)
